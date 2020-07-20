@@ -1,0 +1,23 @@
+﻿  SeqList.c
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.h(118): warning C4018: “<”: 有符号/无符号不匹配
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(7): warning C4047: “函数”:“SeqList *”与“SeqList **”的间接级别不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(7): warning C4024: “SeqListInit”: 形参和实参 1 的类型不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(27): warning C4047: “函数”:“SeqList *”与“SeqList **”的间接级别不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(27): warning C4024: “SeqListPushBack”: 形参和实参 1 的类型不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(34): warning C4047: “函数”:“SeqList *”与“SeqList **”的间接级别不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(34): warning C4024: “SeqListPushFront”: 形参和实参 1 的类型不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(39): warning C4047: “函数”:“SeqList *”与“SeqList **”的间接级别不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(39): warning C4024: “SeqListPopFront”: 形参和实参 1 的类型不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(43): warning C4047: “函数”:“SeqList *”与“SeqList **”的间接级别不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(43): warning C4024: “SeqListPopBack”: 形参和实参 1 的类型不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(49): warning C4047: “函数”:“SeqList *”与“SeqList **”的间接级别不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(49): warning C4024: “SeqListFind”: 形参和实参 1 的类型不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(61): warning C4047: “函数”:“SeqList *”与“SeqList **”的间接级别不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(61): warning C4024: “SeqListInsert”: 形参和实参 1 的类型不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(67): warning C4047: “函数”:“SeqList *”与“SeqList **”的间接级别不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(67): warning C4024: “SeqListErase”: 形参和实参 1 的类型不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(71): warning C4047: “函数”:“SeqList *”与“SeqList **”的间接级别不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(71): warning C4024: “SeqListPrint”: 形参和实参 1 的类型不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(80): warning C4047: “函数”:“SeqList *”与“SeqList **”的间接级别不同
+d:\users\vs code\7_17_ds 1\7_17_ds 1\seqlist.c(80): warning C4024: “SeqListDestory”: 形参和实参 1 的类型不同
+  7_17_DS 1.vcxproj -> D:\Users\VS code\7_17_DS 1\Debug\7_17_DS 1.exe
