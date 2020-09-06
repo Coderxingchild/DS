@@ -1,8 +1,8 @@
 ﻿  TeatMain.cpp
-d:\users\vs code\shujujiegou1\shujujiegou1\seqlist.h(158): warning C4018: “>”: 有符号/无符号不匹配
-d:\users\vs code\shujujiegou1\shujujiegou1\seqlist.h(162): warning C4018: “>”: 有符号/无符号不匹配
-d:\users\vs code\shujujiegou1\shujujiegou1\seqlist.h(175): warning C4018: “>=”: 有符号/无符号不匹配
-d:\users\vs code\shujujiegou1\shujujiegou1\seqlist.h(227): warning C4018: “<”: 有符号/无符号不匹配
-d:\users\vs code\shujujiegou1\shujujiegou1\seqlist.h(276): warning C4715: “Erase_All”: 不是所有的控件路径都返回值
-d:\users\vs code\shujujiegou1\shujujiegou1\seqlist.h(268): warning C4715: “SeqListEraseByVal”: 不是所有的控件路径都返回值
-  shujujiegou1.vcxproj -> D:\Users\VS code\shujujiegou1\Debug\shujujiegou1.exe
+d:\users\github 代码\ds\shujujiegou1\shujujiegou1\seqlist.h(158): warning C4018: “>”: 有符号/无符号不匹配
+d:\users\github 代码\ds\shujujiegou1\shujujiegou1\seqlist.h(162): warning C4018: “>”: 有符号/无符号不匹配
+d:\users\github 代码\ds\shujujiegou1\shujujiegou1\seqlist.h(175): warning C4018: “>=”: 有符号/无符号不匹配
+d:\users\github 代码\ds\shujujiegou1\shujujiegou1\seqlist.h(227): warning C4018: “<”: 有符号/无符号不匹配
+d:\users\github 代码\ds\shujujiegou1\shujujiegou1\seqlist.h(276): warning C4715: “Erase_All”: 不是所有的控件路径都返回值
+d:\users\github 代码\ds\shujujiegou1\shujujiegou1\seqlist.h(268): warning C4715: “SeqListEraseByVal”: 不是所有的控件路径都返回值
+  shujujiegou1.vcxproj -> D:\Users\github 代码\DS\shujujiegou1\Debug\shujujiegou1.exe
