@@ -1,0 +1,3 @@
+﻿  test.cpp
+d:\users\github 代码\ds\oj\oj\test.cpp(165): warning C4326: “main”的返回类型应为“int”而非“void”
+  OJ.vcxproj -> D:\Users\github 代码\DS\OJ\Debug\OJ.exe
