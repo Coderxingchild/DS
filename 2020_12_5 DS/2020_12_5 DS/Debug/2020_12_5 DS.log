@@ -1,2 +1,5 @@
-﻿  seqlist.cpp
+﻿  test.cpp
+d:\users\github 代码\ds\2020_12_5 ds\2020_12_5 ds\test.cpp(124): warning C4018: “<”: 有符号/无符号不匹配
+d:\users\github 代码\ds\2020_12_5 ds\2020_12_5 ds\test.cpp(125): warning C4018: “>”: 有符号/无符号不匹配
+d:\users\github 代码\ds\2020_12_5 ds\2020_12_5 ds\test.cpp(139): warning C4018: “<”: 有符号/无符号不匹配
   2020_12_5 DS.vcxproj -> D:\Users\github 代码\DS\2020_12_5 DS\Debug\2020_12_5 DS.exe
