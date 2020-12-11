@@ -1,8 +1,8 @@
-//#include<iostream>
-//#include<vector>
-//
-//using namespace std;
+#include<iostream>
+#include<vector>
 
+using namespace std;
+////////////////////////////////  作业题  顺序表，单链表  //////////////////////
 
 
 // slist.h     单链表
@@ -18,27 +18,126 @@ typedef struct SList {
 }SList;
 
 // 动态申请一个节点
-SListNode* BuySListNode(SLTDateType x);
+SListNode* BuySListNode(SLTDateType x)
+{
+	SListNode* node = (SListNode*)malloc(sizeof(SListNode));
+	node->data = x;
+	node->next = NULL;
+	return node;
+}
 // 单链表打印
-void SListPrint(SListNode* plist);
+void SListPrint(SListNode* plist)
+{
+	if (plist == NULL)
+		return;
+	if (plist->next != NULL) {
+		printf("%d ", plist->data);
+		plist = plist->next;
+	}
+}
 // 单链表尾插
-void SListPushBack(SListNode** pplist, SLTDateType x);
+void SListPushBack(SList* pplist, SLTDateType x)
+{
+	if (pplist == NULL)
+		return;
+	if (pplist->head == NULL) {
+		//创建第一个节点
+		pplist->head = BuySListNode(x);
+	}
+	else {
+		SListNode* tail = pplist->head;
+		while (tail->next != NULL) {
+			tail = tail->next;
+		}
+		tail->next = BuySListNode(x);
+	}
+}
 // 单链表的头插
-void SListPushFront(SListNode** pplist, SLTDateType x);
+void SListPushFront(SList* pplist, SLTDateType x)
+{
+	if (pplist == NULL)
+		return;
+	SListNode* node = BuySListNode(x);
+	node->next = pplist->head;
+	pplist->head = node;
+}
 // 单链表的尾删
-void SListPopBack(SListNode** pplist);
+void SListPopBack(SList* pplist)
+{
+	if (pplist == NULL)
+		return;
+	SListNode* prev = pplist->head;
+	SListNode* tail = pplist->head->next;
+	if (prev = NULL)
+		return;              //空链表
+	else {
+		pplist->head = NULL;
+	}
+	if (tail != NULL) {
+		prev = tail;
+		tail = tail->next;
+	}
+	else
+		free(tail);
+}
 // 单链表头删
-void SListPopFront(SListNode** pplist);
+void SListPopFront(SList* pplist)
+{
+	if (pplist == NULL || pplist->head == NULL)
+		return;
+	SListNode* node = pplist->head->next;
+	free(pplist->head);
+	pplist->head = node;
+}
 // 单链表查找
-SListNode* SListFind(SListNode* plist, SLTDateType x);
+SListNode* SListFind(SList* plist, SLTDateType x)
+{
+	if (plist == NULL)
+		return;
+	SListNode* node = plist->head;
+	while (node) {
+		if (node->data != x) {
+			node = node->next;
+		}
+		return node;
+	}
+	return NULL;
+}
 // 单链表在pos位置之后插入x
 // 分析思考为什么不在pos位置之前插入？
-void SListInsertAfter(SListNode* pos, SLTDateType x);
+void SListInsertAfter(SListNode* pos, SLTDateType x)
+{
+	if (pos == NULL)
+		return;
+	SListNode* node = BuySListNode(x);
+	SListNode* next = pos->next;
+	node->next = next;
+	pos->next = node;
+}
 // 单链表删除pos位置之后的值
 // 分析思考为什么不删除pos位置？
-void SListEraseAfter(SListNode* pos);
+void SListEraseAfter(SListNode* pos)
+{
+	if (pos == NULL || pos->next == NULL)
+		return;
+	SListNode* next = pos->next;
+	SListNode* code = next->next;
+	free(next);
+	pos->next = code;
+}
 // 单链表的销毁
-void SListDestory(SList* plist);
+void SListDestory(SList* plist)
+{
+	if (plist == NULL)
+		return;
+	SListNode* code = plist->head;
+	while (code) {
+		SListNode* node = code->next;
+		free(code);
+		code = node;
+	}
+	plist->head = NULL;
+}
 
 
 
