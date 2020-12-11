@@ -1,6 +1,7 @@
 #include<stdlib.h>
 #include<stdio.h>
 
+/////////////////////////////////单链表/////////////
 typedef int LDataType;
 
 typedef struct ListNode {
@@ -139,15 +140,17 @@ void list_destory(list* lst)
 ////////////////////////////////////////？？？？？？
 void list_earse(list* lst,ListNode* node)      //删除任意一个节点
 {
-	if (node == NULL)     //要删除的当前的节点为空
+	if (lst == NULL || node == NULL)     //要删除的当前的节点为空
 		return;
 	ListNode* start = lst->_head;
 	ListNode* cur = start->_next;
-	while (start != node) {
-		
-		start = start->_next;
+	if (start == node)                  //只有一个头节点时---赋空
+		lst->_head = NULL;
+	if(start != node) {               //寻找要删除的节点
+		start = cur;
+		cur = cur->_next;
 	}
-	if (start == node) {
+	else {
 		free(start);
 		start = cur;
 	}
