@@ -6,17 +6,23 @@ using namespace std;
 
 
 // slist.h     单链表
+
+
 typedef int SLTDateType;
 typedef struct SListNode
 {
 	SLTDateType data;
 	struct SListNode* next;
 }SListNode;
-
 typedef struct SList {
 	SListNode* head;
 }SList;
 
+//初始化
+void SListInit(SList* plist)
+{
+	plist->head = NULL;
+}
 // 动态申请一个节点
 SListNode* BuySListNode(SLTDateType x)
 {
@@ -26,13 +32,14 @@ SListNode* BuySListNode(SLTDateType x)
 	return node;
 }
 // 单链表打印
-void SListPrint(SListNode* plist)
+void SListPrint(SList* plist)
 {
-	if (plist == NULL)
+	if (plist == NULL || plist->head == NULL)
 		return;
-	if (plist->next != NULL) {
-		printf("%d ", plist->data);
-		plist = plist->next;
+	SListNode* tail = plist->head;
+	if (tail != NULL) {
+		printf("%d ", tail->data);
+		tail = tail->next;
 	}
 }
 // 单链表尾插
@@ -40,15 +47,12 @@ void SListPushBack(SList* pplist, SLTDateType x)
 {
 	if (pplist == NULL)
 		return;
-	if (pplist->head == NULL) {
-		//创建第一个节点
+	SListNode* tail = pplist->head;
+	if (pplist->head == NULL)              //空链表
 		pplist->head = BuySListNode(x);
-	}
-	else {
-		SListNode* tail = pplist->head;
-		while (tail->next != NULL) {
+	else{
+		while(tail->next != NULL)
 			tail = tail->next;
-		}
 		tail->next = BuySListNode(x);
 	}
 }
@@ -58,42 +62,46 @@ void SListPushFront(SList* pplist, SLTDateType x)
 	if (pplist == NULL)
 		return;
 	SListNode* node = BuySListNode(x);
-	node->next = pplist->head;
-	pplist->head = node;
+	if (pplist->head == NULL)
+		pplist->head = node;
+	else {
+		node->next = pplist->head;
+		pplist->head = node;
+	}
 }
 // 单链表的尾删
 void SListPopBack(SList* pplist)
 {
-	if (pplist == NULL)
+	if (pplist == NULL || pplist->head == NULL)
 		return;
-	SListNode* prev = pplist->head;
-	SListNode* tail = pplist->head->next;
-	if (prev = NULL)
-		return;              //空链表
-	else {
-		pplist->head = NULL;
-	}
-	if (tail != NULL) {
+	SListNode* prev = NULL;
+	SListNode* tail = pplist->head;
+	while(tail->next != NULL) {
 		prev = tail;
 		tail = tail->next;
 	}
-	else
-		free(tail);
+	free(tail);
+	if (prev == NULL) {
+		pplist->head = NULL;
+	}
+	else {
+		prev->next = NULL;
+	}
 }
 // 单链表头删
 void SListPopFront(SList* pplist)
 {
 	if (pplist == NULL || pplist->head == NULL)
 		return;
-	SListNode* node = pplist->head->next;
+	SListNode* next = pplist->head->next;
 	free(pplist->head);
-	pplist->head = node;
+	pplist->head = next;
 }
 // 单链表查找
 SListNode* SListFind(SList* plist, SLTDateType x)
 {
-	if (plist == NULL)
-		return;
+	if (plist == NULL || plist->head == NULL)
+		return 0;
 	SListNode* node = plist->head;
 	while (node) {
 		if (node->data != x) {
@@ -110,34 +118,77 @@ void SListInsertAfter(SListNode* pos, SLTDateType x)
 	if (pos == NULL)
 		return;
 	SListNode* node = BuySListNode(x);
-	SListNode* next = pos->next;
-	node->next = next;
+	node->next = pos->next;
 	pos->next = node;
 }
 // 单链表删除pos位置之后的值
 // 分析思考为什么不删除pos位置？
 void SListEraseAfter(SListNode* pos)
 {
-	if (pos == NULL || pos->next == NULL)
+	if (pos == NULL)
 		return;
-	SListNode* next = pos->next;
-	SListNode* code = next->next;
-	free(next);
-	pos->next = code;
+	SListNode* node = pos->next->next;
+	free(pos->next);
+	pos->next = node;
 }
 // 单链表的销毁
 void SListDestory(SList* plist)
 {
-	if (plist == NULL)
+	if (plist == NULL || plist->head == NULL)
 		return;
-	SListNode* code = plist->head;
-	while (code) {
-		SListNode* node = code->next;
-		free(code);
-		code = node;
+	SListNode* node = plist->head;
+	while (node) {
+		SListNode* code = node->next;
+		free(node);
+		node = code;
 	}
-	plist->head = NULL;
+	plist = NULL;
 }
+
+void test()
+{
+	SList lst;
+	SListInit(&lst);
+
+	SListPushBack(&lst, 1);
+	SListPushBack(&lst, 2);
+	SListPushBack(&lst, 3);
+	SListPushBack(&lst, 4);
+	SListPrint(&lst);
+
+	SListPushFront(&lst, 9);
+	SListPushFront(&lst, 8);
+	SListPushFront(&lst, 7);
+	SListPrint(&lst);
+
+	SListPopBack(&lst);
+	SListPopBack(&lst);
+	SListPopBack(&lst);
+	SListPrint(&lst);
+
+	SListPopFront(&lst);
+	SListPopFront(&lst);
+	SListPopFront(&lst);
+	SListPrint(&lst);
+
+	/*SListInsertAfter(&(lst->head)+3, 0);
+	SListPrint(&lst);
+
+	SListEraseAfter(&(lst->head) + 2);
+	SListPrint(&lst);*/
+}
+int main()
+{
+	test();
+	return 0;
+}
+
+
+
+
+
+
+
 
 
 
