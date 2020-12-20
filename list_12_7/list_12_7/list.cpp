@@ -8,10 +8,263 @@ typedef struct ListNode {
 }ListNode;
 
 
+//删除重复节点不保留
+
+ListNode* deleteNode(ListNode* head)
+{
+	if (head == NULL || head->_next == NULL)
+		return head;
+	ListNode* prev, *start, *end;
+	prev = NULL;
+	start = head;
+	end = head->_next;
+	while (end) {
+		if (start->_data == end->_data) {
+			while (end && end->_data == start->_data)
+				end = end->_next;
+			while (start != end) {
+				ListNode*next = start->_next;
+				free(start);
+				start = next;
+			}
+			if (prev == NULL)
+				head = end;
+			else
+				prev->_next = end;
+			if (end)
+				end = end->_next;
+		else {
+				prev = start;
+				start = end;
+				end = end->_next;
+			 }
+		}
+	}
+	return head;
+}
+
+
+
+
+
+
+///////////////??????????????????????????????????
+//对链表进行插入排序
+
+//ListNode* insert(ListNode* head)
+//{
+//	if (head == NULL || head->_next == NULL)     //空表或只有一个节点
+//		return head;
+//	ListNode* node = head->_next;
+//	//有序数据的尾节点
+//	ListNode* tail = head;
+//	while (node) {
+//		if (node->_data < tail->_data) {
+//			//小于有序链表的最后一个节点，需要向前搜索
+//			ListNode* prev, *cur;
+//			prev = NULL;
+//			cur = head;
+//			while (cur && cur->_data <= node->_data) {
+//				prev = cur;
+//				cur = cur->_next;
+//			}
+//			tail->_next = node->_next;
+//			if (prev)                    //有可能是在头部插入
+//				prev->_next = node;
+//			else
+//				head = node;
+//			node->_next = cur;
+//
+//			//下一个数据的排序
+//			node = tail->_next;     //tail 有序的尾节点
+//		}
+//		else {         //有序不需要插入，位置不变，排序下一个数据
+//			tail = tail->_next;
+//			node = tail->_next;
+//		}
+//	}
+//	return head;
+//}
+
+
+
+
+
+
+
+//?????????????????????????????????????????????????????????
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//给定一个链表，每个节点包含一个额外增加的随机指针，该指针可以指向链表中的任何节点或空节点。
+//要求返回这个链表的深度拷贝。
+//1、拷贝数据
+//2、拷贝随机指针
+//3、拆分指针
+
+//typedef int LDataType;
+//typedef struct ListNode {
+//	LDataType _data;
+//	ListNode* _next;             //带头结点的非循环单链表
+//	ListNode* random;  //随即指针
+//}ListNode;
+//
+//ListNode* copyRandomList(ListNode* head)
+//{
+//	if (head == NULL)
+//		return head;
+//	ListNode* cur = head;
+//	//拷贝数据
+//	while (cur)
+//	{
+//		ListNode* newNode = (ListNode*)malloc(sizeof(ListNode));
+//		newNode->_data = cur->_data;
+//		newNode->_next = cur->_next;
+//		cur->_next = newNode;
+//		cur = newNode->_next;
+//	}
+//	//修改随机指针
+//	cur = head;
+//	while (cur) {
+//		ListNode* copy = cur->_next;
+//		if (cur->random)
+//			copy->random = cur->random->_next;
+//		else
+//			copy->random = NULL;
+//		cur = copy->_next;
+//	}
+//	//拆链
+//	ListNode* newHead = NULL;
+//	cur = head;
+//	while (cur) {
+//		ListNode* copy = cur->_next;
+//		ListNode* next = copy->_next;
+//		cur->_next = next;
+//		if (newHead == NULL)
+//			newHead = copy;
+//		if(next)
+//			copy->_next = next->_next;
+//		cur = next;
+//	}
+//	return newHead;
+//}
+
+
+
+
+
+//typedef int LDataType;
+//typedef struct ListNode {
+//	LDataType _data;
+//	ListNode* _next;             //带头结点的非循环单链表
+//}ListNode;
+
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//给定一个链表，返回链表开始入环的第一个节点，若无环则返回NULL
+//先找到相遇点，分别从相遇点开始走直到再一次相遇
+
+//ListNode* detectCycle(ListNode* head)
+//{
+//	if (head == NULL)
+//		return NULL;
+//	ListNode*fast, *slow;
+//	fast = slow = head;
+//	while (fast && fast->_next) {
+//		fast = fast->_next->_next;
+//		slow = slow->_next;
+//		if (fast == slow)           //找到第一次相遇点表示有环
+//			slow = head;
+//		while (slow!=fast) {          //slow指针从头 head 重新遍历，fast 从第一次相遇位置开始遍历
+//			slow = slow->_next;
+//			fast = fast->_next;
+//		}
+//		return fast;
+//	}
+//	//无环
+//	return NULL;
+//}
+
+
+
+
+
+
+//给定一个链表，判断链表中是否有环。
+//快慢指针相遇问题
+
+//bool hasCycle(ListNode* head)
+//{
+//	if (head == NULL)
+//		return false;
+//	ListNode* fast, *slow;
+//	fast = slow = head;
+//	while (fast && fast->_next) {
+//		fast = fast->_next->_next;
+//		slow = slow->_next;
+//		if (fast == slow) {
+//			return true;
+//		}
+//	}
+//	return false;
+//}
+
+
+
+
+
+
+
+//输入两个链表，找出第一个公共节点
+//计算两个链表长度
+
+//ListNode* getInterNode(ListNode* headA, ListNode* headB)
+//{
+//	ListNode* curA, *curB;
+//	curA = headA;
+//	curB = headB;
+//	int lenA = 0, lenB = 0;
+//	while(curA)
+//	{
+//		++lenA;
+//		curA = curA->_next;
+//	}
+//	while (curB) {
+//		++lenB;
+//		curB = curB->_next;
+//	}
+//	int gap = abs(lenA - lenB);       //求长度差
+//	curA = headA;
+//	curB = headB;
+//	if (lenA > lenB) {
+//		while (gap--) {
+//			curA = curA->_next;
+//		}
+//	}
+//	else {
+//		while (gap--) {
+//			curB = curB->_next;
+//		}
+//	}
+//
+//	//同时走
+//	while (curA&&curB) {
+//		if (curA == curB)
+//			return curA;
+//		curA = curA->_next;
+//		curB = curB->_next;
+//	}
+//	return NULL;       //没有公共节点
+//}
+
+
+
+
+
+
+
+
 ///////////////////////////////////////注意链表的反转
 
 //判断回文结构 ------ 对称
-////数组：start  end  指针，比较指针内容大小是否相同
 
 //bool huiwen(ListNode*head)
 //{
@@ -19,9 +272,9 @@ typedef struct ListNode {
 //		return;
 //	ListNode*start, *middle;
 //	start = middle = head;
-//	while (middle && middle->_next) {
-//		middle = middle->_next->_next;
-//		start = start->_next;
+//	while (start && start->_next) {
+//		start = start->_next->_next;
+//		middle = middle->_next;
 //	}
 //	//从middle位置开始反转
 //	ListNode* start2, *node, *next;
@@ -50,8 +303,6 @@ typedef struct ListNode {
 
 
 
-
-
 //两个有序链表合并成一个有序链表     ??????????????????????????
 
 //ListNode* mergetwo(ListNode* l1, ListNode* l2)
@@ -66,6 +317,7 @@ typedef struct ListNode {
 //				newhead = newtail = cur1;
 //			}
 //			newtail->_next = cur1;
+//			newtail=newtail->next;
 //			cur1 = cur1->_next;
 //		}
 //		else {
@@ -73,6 +325,7 @@ typedef struct ListNode {
 //				newhead = newtail = cur2;
 //			}
 //			newtail->_next = cur2;
+//			newtail=newtail->next;
 //			cur2 = cur2->_next;
 //		}
 //	}
@@ -244,6 +497,7 @@ typedef struct ListNode {
 //			cur = cur->_next;
 //		}
 //	}
+//  return head;
 //}
 
 
