@@ -6,6 +6,9 @@ using namespace std;
 
 typedef int Ldatatype;
 
+//双向循环链表-带头节点
+
+
 typedef struct ListNode{
 	Ldatatype _data;
 	ListNode* _prev;      //前驱
