@@ -2,7 +2,7 @@
 #include<stdlib.h>
 
 //////////////////////////////    队头    /////////////////////////////
-//队头：删除     队尾：插入
+//队头：删除     队尾：插入      
 //先进先出
 
 
@@ -77,4 +77,14 @@ int	Queue_size(Queue* q)
 	if (q == NULL)
 		return 0;
 	return q->_size;
+}
+void Queue_destory(Queue* q)
+{
+	QNode* cur = q->_head;
+	while (cur) {
+		QNode* next = cur->_next;
+		free(cur);
+		cur = next;
+	}
+	q->_head = q->_tail = NULL;
 }

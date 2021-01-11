@@ -2,12 +2,12 @@
 #include<stdlib.h>
 
 ////////////////////    栈      /////////////////////
-//栈顶：插入删除
+//栈顶：插入删除     
 
 //后入先出
+//顺序表来实现
 
 typedef int STdatatype;
-
 typedef struct stack {
 	STdatatype *_data;
 	int _size;
