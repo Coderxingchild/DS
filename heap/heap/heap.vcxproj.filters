@@ -21,5 +21,11 @@
     <ClCompile Include="btree.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="queue_btree.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="btree_oj .cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

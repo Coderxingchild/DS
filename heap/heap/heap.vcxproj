@@ -124,7 +124,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="btree.cpp" />
+    <ClCompile Include="btree_oj .cpp" />
     <ClCompile Include="heap.cpp" />
+    <ClCompile Include="queue_btree.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
