@@ -266,37 +266,38 @@ ListNode* deleteNode(ListNode* head)
 
 //判断回文结构 ------ 对称
 
-//bool huiwen(ListNode*head)
-//{
-//	if (head == NULL || head->_next == NULL)
-//		return;
-//	ListNode*start, *middle;
-//	start = middle = head;
-//	while (start && start->_next) {
-//		start = start->_next->_next;
-//		middle = middle->_next;
-//	}
-//	//从middle位置开始反转
-//	ListNode* start2, *node, *next;
-//	start2 = NULL;
-//	node = middle->_next;
-//	next = node->_next;
-//	while (node) {
-//		node->_next = middle;
-//		start2 = node;
-//		middle = node;
-//		node = next;
-//	}
-//	//比较start2 与 head
-//	while (head&&start2) {
-//		if (head->_data == start2->_data) {
-//			head = head->_next;
-//			start2 = start->_next;
-//		}
-//		return false;
-//	}
-//	return true;
-//}
+bool huiwen(ListNode*head)
+{
+	if (head == NULL || head->_next == NULL)
+		return;
+	ListNode*start, *middle;
+	start = middle = head;
+	while (start && start->_next) { 
+		start = start->_next->_next;       //快指针 走两步
+		middle = middle->_next;           //慢指针 走一步
+	}
+	//从middle位置开始反转
+	ListNode* start2, *node, *next;
+	start2 = NULL;
+	node = middle->_next;
+	while (node) {
+		next = node->_next;
+		node->_next = middle;
+		start2 = node;
+		middle = node;
+		node = next;
+	}
+	//比较start2 与 head
+	while (head&&start2) {
+		if (head->_data == start2->_data) {
+			head = head->_next;
+			start2 = start->_next;
+		}
+		else
+			return false;
+	}
+	return true;
+}
 
 
 
@@ -305,86 +306,86 @@ ListNode* deleteNode(ListNode* head)
 
 //两个有序链表合并成一个有序链表     ??????????????????????????
 
-//ListNode* mergetwo(ListNode* l1, ListNode* l2)
-//{
-//	ListNode* cur1, *cur2, *newhead, *newtail;
-//	cur1 = l1;
-//	cur2 = l2;
-//	newhead = newtail = NULL;
-//	while (cur1 && cur2) {
-//		if (cur1->_data <= cur2->_data) {
-//			if (newhead == NULL) {
-//				newhead = newtail = cur1;
-//			}
-//			newtail->_next = cur1;
-//			newtail=newtail->next;
-//			cur1 = cur1->_next;
-//		}
-//		else {
-//			if (newhead == NULL) {
-//				newhead = newtail = cur2;
-//			}
-//			newtail->_next = cur2;
-//			newtail=newtail->next;
-//			cur2 = cur2->_next;
-//		}
-//	}
-//	if (cur1 != NULL)
-//		newtail->_next = cur1;
-//	if (cur2 != NULL)
-//		newtail->_next = cur2;
-//	newtail->_next = NULL;
-//	return newhead;
-//}
+ListNode* mergetwo(ListNode* l1, ListNode* l2)
+{
+	ListNode* cur1, *cur2, *newhead, *newtail;
+	cur1 = l1;
+	cur2 = l2;
+	newhead = newtail = NULL;
+	while (cur1 && cur2) {
+		if (cur1->_data <= cur2->_data) {
+			if (newhead == NULL) {
+				newhead = newtail = cur1;
+			}
+			else {
+				newtail->_next = cur1;
+				newtail = newtail->_next;
+			}
+			cur1 = cur1->_next;
+		}
+		else {
+			if (newhead == NULL) {
+				newhead = newtail = cur2;
+			}
+			else {
+				newtail->_next = cur2;
+				newtail = newtail->_next;
+			}
+			cur2 = cur2->_next;
+		}
+	}
+	if (cur1 != NULL)
+		newtail->_next = cur1;
+	if (cur2 != NULL)
+		newtail->_next = cur2;
+	return newhead;
+}
 
 
 
 
 //给定一个节点值，小于该值的节点放前大于放后，且不改变节点的相对位置
-//
-//ListNode* sortList(ListNode* head,int val)
-//{
-//	if (head == NULL)
-//		return;
-//	ListNode* lesshead, *lesstail, *greaterhead, *greatertail;
-//	ListNode* cur = head;
-//	lesshead = lesstail = greaterhead = greatertail = NULL;
-//	while (cur) {
-//		if (cur->_data <= val) {
-//			if (lesstail = NULL) {
-//				lesshead = lesstail = cur;
-//			}
-//			else {
-//				lesstail->_next = cur;
-//				lesstail = cur;
-//			}
-//			cur = cur->_next;
-//		}
-//		else {
-//			if (greatertail = NULL)
-//				greaterhead = greatertail = cur;
-//			else {
-//				greatertail->_next = cur;
-//				greatertail = cur;
-//			}
-//			cur = cur->_next;
-//		}
-//	}	
-//	if(greatertail)
-//		greatertail->_next = NULL;
-//	if (lesshead == NULL)
-//		return greaterhead;         //小链表为空
-//	if (greaterhead == NULL) {
-//		if (lesstail)
-//			lesstail->_next = NULL;
-//		return lesshead;
-//	}
-//	lesstail->_next = greaterhead->_next;       //两个链接
-//	/*ListNode* node = lesshead->_next;
-//	free(greaterhead);
-//	free(lesshead);*/            //当有头结点时（空），需要对头节点进行释放
-//	return lesshead;
-//}
+
+ListNode* sortList(ListNode* head,int val)
+{
+	if (head == NULL)
+		return;
+	ListNode* lesshead, *lesstail, *greaterhead, *greatertail;
+	ListNode* cur = head;
+	lesshead = lesstail = greaterhead = greatertail = NULL;
+	while (cur) {
+		if (cur->_data < val) {
+			if (lesstail == NULL) {
+				lesshead = lesstail = cur;
+			}
+			else {
+				lesstail->_next = cur;
+				lesstail = cur;            //更新小链表的尾指针
+			}
+			cur = cur->_next;
+		}
+		else {
+			if (greatertail == NULL)
+				greaterhead = greatertail = cur;
+			else {
+				greatertail->_next = cur;
+				greatertail = cur;
+			}
+			cur = cur->_next;
+		}
+	}	
+	if(greatertail)
+		greatertail->_next = NULL;
+	if (lesshead == NULL)
+		return greaterhead;         //小链表为空返回大链表
+	if (greaterhead == NULL) {
+		if (lesstail)
+			lesstail->_next = NULL;
+		return lesshead;
+	}
+	lesstail->_next = greaterhead;       //两个链接
+	return lesshead;
+}
 
 
 
@@ -473,32 +474,35 @@ ListNode* deleteNode(ListNode* head)
 
 //删除链表中给定值的所有节点
 
-//typedef int LDataType;
-//typedef struct ListNode {
-//	LDataType _data;
-//	ListNode* _next;             //带头结点的非循环单链表
-//}ListNode;
-//ListNode* remove(ListNode* head, int val) 
-//{
-//	ListNode*prev, *cur;
-//	prev = NULL;
-//	cur = head;
-//	while (cur) {
-//		if (cur->_data == val) {
-//			if (cur == head){                //如果要删除的节点是头节点head
-//				head = cur->_next;
-//			}
-//			prev->_next = cur->_next;
-//			free(cur);
-//			cur = prev->_next;
-//		}
-//		else {
-//			prev = cur;
-//			cur = cur->_next;
-//		}
-//	}
-//  return head;
-//}
+typedef int LDataType;
+typedef struct ListNode {
+	LDataType _data;
+	ListNode* _next;             //带头结点的非循环单链表
+}ListNode;
+ListNode* remove(ListNode* head, int val) 
+{
+	ListNode*prev, *cur;
+	prev = NULL;
+	cur = head;
+	while (cur) {
+		if (cur->_data == val) {
+			if (cur == head){                //如果要删除的节点是头节点head
+				head = cur->_next;
+				free(cur);
+			}
+			else {
+				prev->_next = cur->_next;
+				free(cur);
+				cur = prev->_next;
+			}			
+		}
+		else {
+			prev = cur;
+			cur = cur->_next;
+		}
+	}
+  return head;
+}
 
 
 
